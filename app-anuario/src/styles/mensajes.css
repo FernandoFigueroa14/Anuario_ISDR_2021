@@ -1,0 +1,75 @@
+.Mensajes{
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    max-width: 49%;
+}
+
+
+.buffer{
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+}
+
+.profileNamePost{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    margin: 0px;
+}
+
+.s1{
+    margin-bottom: 15px;
+}
+
+.profilePicFeed{
+    width: 40px;
+    height: 40px;
+    border-radius: 150px;
+
+    margin-right: 10px;
+}
+
+.imgFeed{
+    text-align: center;
+    width: 100% !important;
+    border-radius: 10px;
+
+}
+
+.Intro{
+    background-color: rgba(85, 187, 183,.10);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+
+}
+
+.Introp{
+    border-radius: 10px;
+    font-weight: 200;
+    font-size: 12px;
+}
+
+.destino{
+    margin-top: 14px;
+    margin-bottom: 14px;
+
+}
+
+.ajuste{
+    padding-left: 8px;
+}
+
+.mensaje{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    font-size: 13px;
+
+}
