@@ -1,0 +1,50 @@
+.mainPage{
+    padding-top: 6%;
+    padding-bottom: 1.5%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.mainPage > img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 5px 8px -9px rgb(0, 0, 0.75);
+}
+
+.declaracion{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #55bbb7;
+}
+
+.declaracion > h2, h3{
+    font-family: 'Poppins', sans-serif;
+}
+
+.declaracion > h2{
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.declaracion > h3{
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.imgDos{
+    max-width: 100%;
+    border-radius: 10px;
+    margin-left: -10px;
+}
+
+.inicioSes{
+    padding: 10px;
+    background-color: #fff;
+    margin-top: 15px;
+    margin-bottom: 100px;
+    margin-left: 2px;
+    margin-right: 2px;
+    border-radius: 10px;
+}
