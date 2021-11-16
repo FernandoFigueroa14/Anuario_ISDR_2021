@@ -1,0 +1,73 @@
+.header{
+    box-shadow: 0px 5px 8px -9px rgb(0, 0, 0.75);
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: fixed;
+    top: 0;
+    background: rgba( 255, 255, 255, 0.45 );
+    backdrop-filter: blur( 6.5px );
+    -webkit-backdrop-filter: blur( 6.5px );
+
+
+}
+
+.LogoOne{
+    margin: 0px;
+    color: #55bbb7;
+    font-size: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+
+}
+
+.logo{
+    margin: 0px;
+    color: black;
+    font-size: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.search{
+    background-color: #f4f6f8;
+    border-radius: 100px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.entrada{
+    background-color: transparent;
+    border: transparent;
+    padding-left: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    font-size: 13px;
+    flex: auto;
+}
+
+
+.profilePic{
+    width: 40px;
+    height: 40px;
+    border-radius: 150px;
+    border:2px solid #55bbb7;
+    padding: 1px;
+    margin-right: 10px;
+}
+
+.profileName{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    margin: 0px;
+
+}
+.profileNameTwo{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    color: #757575;
+    margin: 0px;
+}
