@@ -28,8 +28,12 @@ module.exports=(sequelize, dataTypes) => {
   
     Publicacion.associate = function(modelos){
         Publicacion.belongsTo(modelos.Usuario, {
-            as: "usuario",
+            as: "autor",
             foreignKey: "id_autor"
+        });
+        Publicacion.belongsTo(modelos.Usuario, {
+            as: "perfil",
+            foreignKey: "id_perfil"
         });
         Publicacion.belongsTo(modelos.Comentario, {
             as: "comentario",
