@@ -32,16 +32,21 @@ function mainPage() {
                     <form>
                         <h2 id="inicio">Iniciar sesión</h2>
                         <div class="row mb-3">
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Correo electrónico"/>
+                            <div class="col-sm-12">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Correo electrónico" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" id="inputPassword3" placeholder="Contraseña"/>
+                            <div class="col-sm-12">
+                                <input type="password" class="form-control" id="inputPassword3" placeholder="Contraseña" />
                             </div>
                         </div>
+                        <input class="form-check-input" type="checkbox" id="gridCheck1" />
+                        <label class="form-check-label" for="gridCheck1"> Recordar usuario
+                        </label>
+                        <br />
                         <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+
                     </form>
                 </div>
 

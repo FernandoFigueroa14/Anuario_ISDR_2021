@@ -1,6 +1,10 @@
 .crearCuenta{
-    padding-top: 6%;
-    padding-bottom: 1.5%;
+    padding-top: 10%;
     padding-left: 10%;
     padding-right: 10%;
+    min-height: 100vh;
+}
+
+.ajuste2{
+    padding: 10%;
 }

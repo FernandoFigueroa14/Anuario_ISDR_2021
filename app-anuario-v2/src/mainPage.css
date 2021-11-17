@@ -16,7 +16,7 @@
     margin-bottom: 10px;
     padding: 20px;
     border-radius: 10px;
-    background-color: #55bbb7;
+    background-color: rgba(85, 187, 183,.10);
 }
 
 .declaracion > h2, h3{
@@ -60,7 +60,7 @@ form{
     padding-bottom: 40px;
 }
 
-#inputEmail3, #inputPassword3{
+#inputEmail3, #inputPassword3, .formatoIn{
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
     background-color: #f4f6f8;
