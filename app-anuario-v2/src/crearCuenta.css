@@ -8,3 +8,8 @@
 .ajuste2{
     padding: 10%;
 }
+
+.errors{
+    color: red;
+    font-weight: bold;
+}
