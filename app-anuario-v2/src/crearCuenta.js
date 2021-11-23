@@ -24,6 +24,10 @@ function CrearCuenta() {
         apodoError: "",
         path_fotoError: ""
     }); 
+
+    const [status, setStatus] = useState({
+        status: ""
+    })
     
     //Consumiendo el servicio POST  
     const usuarioNuevo = async () =>{
@@ -40,6 +44,9 @@ function CrearCuenta() {
       const data = await respuesta.json();
       console.log(data);
       if(data.status===400){
+          setStatus({
+              status: data.status
+          })
           setErrorState({
             nombresError: data.errors.nombres ? data.errors.nombres.msg : "",
             apellidosError: data.errors.apellidos ? data.errors.apellidos.msg : "",
@@ -49,6 +56,13 @@ function CrearCuenta() {
             apodoError: data.errors.apodo ? data.errors.apodo.msg : "",
             path_fotoError: data.errors.path_foto ? data.errors.path_foto.msg : ""
         });
+      }else if(data.status === 201){
+        setStatus({
+            status: data.status
+        })
+        console.log(status);
+        alert("Usuario creado con éxito");
+        window.location.href="/AnuarioF";
       }
     };
 
@@ -71,7 +85,9 @@ function CrearCuenta() {
 
             <div className="row inicioSes ajuste2">
 
-                <form onSubmit={(e)=>e.preventDefault()}>
+                <form action="AnuarioF" onSubmit={(e)=>{
+                        e.preventDefault();
+                    }}>
                     <h2 id="inicio">Crear mi cuenta</h2>
                     <div className="row mb-3">
                         <div className="col-sm-12">
