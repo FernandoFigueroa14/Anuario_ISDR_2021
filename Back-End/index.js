@@ -1,6 +1,7 @@
 //Importando la biblioteca express
 const express = require('express');
 const path = require('path');
+const cors=require('cors')
 const cookies = require('cookie-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
@@ -16,6 +17,9 @@ const userLoggedMiddleware = require('./public/js/userLoggedMiddleware')
 const app = express();
 
 const PORT = process.env.PORT | 8080;
+
+//Configuración de cors para recibir peticiones desde otros origenes
+app.use(cors())
 
 //Establecer un middleware que configure donde se encuentran los recursos públicos
 app.use(express.static(path.join(__dirname,'public')));
