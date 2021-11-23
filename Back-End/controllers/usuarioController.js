@@ -34,7 +34,7 @@ const usuarioController = {
             await Usuarios.findOne({where: {email: req.body.email}})
                 .then(async usuario => {
                     if(usuario){
-                        res.json({status:400, errors: "Usuario existente con este correo electrónico"});            
+                        res.json({status:400, errors: {email: {msg:"Usuario existente con este correo electrónico"}}});            
                     }else{
                         req.body.contraseña = bcryptjs.hashSync(req.body.contraseña, 10);
                         delete req.body.contraseñaConfirm;

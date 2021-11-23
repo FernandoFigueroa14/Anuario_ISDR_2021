@@ -37,7 +37,8 @@ function CrearCuenta() {
             })
         });
         //Imprimir lo que responde el servidor
-      const data = await respuesta.json()
+      const data = await respuesta.json();
+      console.log(data);
       if(data.status===400){
           setErrorState({
             nombresError: data.errors.nombres ? data.errors.nombres.msg : "",
