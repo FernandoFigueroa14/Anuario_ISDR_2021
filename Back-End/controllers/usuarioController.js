@@ -55,7 +55,7 @@ const usuarioController = {
                 });
             } else {
             // Si hay errores
-            res.json({status: 400, ...errors})
+            res.json({status: 400, errors: errors.mapped()})
             }
     },
     updateUsuario: async (req, res) => {

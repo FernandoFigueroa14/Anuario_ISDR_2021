@@ -13,18 +13,18 @@ function CrearCuenta() {
             'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                nombres: "Ernesto Ibhar",
-                apellidos: "Guevara Gómez",
-                email: "A01746121@itesm.mx",
-                contraseña: "NetoGueGo_08",
-                contraseñaConfirm: "NetoGueGo_08",
-                apodo: "Netoruuuuk",
+                nombres: "",
+                apellidos: "",
+                email: "",
+                contraseña: "",
+                contraseñaConfirm: "",
+                apodo: "",
                 path_foto: "D:/images/neto.png"
             })
         });
         //Imprimir lo que responde el servidor
       const data = await respuesta.json()
-      console.log(data)
+      console.log(data.errors.nombres)
     };
 
     useEffect(() => {
