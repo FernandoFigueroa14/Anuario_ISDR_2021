@@ -34,7 +34,7 @@ const usuarioController = {
             await Usuarios.findOne({where: {email: req.body.email}})
                 .then(async usuario => {
                     if(usuario){
-                        res.json({estado: "Usuario existente con este correo electrónico"});            
+                        res.json({status:400, errors: "Usuario existente con este correo electrónico"});            
                     }else{
                         req.body.contraseña = bcryptjs.hashSync(req.body.contraseña, 10);
                         delete req.body.contraseñaConfirm;
@@ -45,17 +45,17 @@ const usuarioController = {
                                     })
                                     .catch(error => {
                                         console.log(error);
-                                        res.json({estado: 'Error'});
+                                        res.json({status: 400, errors: error});
                                     });
                                 }
                     })
                 .catch(error => {
                     console.log(error);
-                    res.json({estado: "Error"});
+                    res.json({status: 400, errors: error});
                 });
             } else {
             // Si hay errores
-            res.json({status: 400, errors})
+            res.json({status: 400, ...errors})
             }
     },
     updateUsuario: async (req, res) => {
