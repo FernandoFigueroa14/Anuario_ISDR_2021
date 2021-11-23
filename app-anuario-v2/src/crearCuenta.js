@@ -62,32 +62,16 @@ function CrearCuenta() {
         })
         console.log(status);
         alert("Usuario creado con éxito");
-        window.location.href="/AnuarioF";
+        window.location.href="/";
       }
     };
-
-    useEffect(() => {
-        fetch('http://18.234.222.26:8080/usuarios')
-        .then(res=>res.json())
-          .then(datos=>{
-            //console.log(datos)
-            const usuarios=datos;
-            //console.log(usuarios);
-          })
-          .catch(err=>{
-            console.log("Servidor desconectado")
-            console.log(err)
-          }) 
-    },[]);
 
     return (
         <div className="crearCuenta">
 
             <div className="row inicioSes ajuste2">
 
-                <form action="AnuarioF" onSubmit={(e)=>{
-                        e.preventDefault();
-                    }}>
+                <form onSubmit={(e)=>e.preventDefault()}>
                     <h2 id="inicio">Crear mi cuenta</h2>
                     <div className="row mb-3">
                         <div className="col-sm-12">

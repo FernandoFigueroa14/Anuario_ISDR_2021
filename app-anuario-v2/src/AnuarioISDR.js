@@ -1,11 +1,26 @@
 import React from 'react';
+import { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './mainPage.css';
 
 import Mensajes from './components/mensajes';
 
-function anuario() {
+function Anuario() {
+    useEffect(() => {
+        fetch('http://18.234.222.26:8080/usuarios')
+        .then(res=>res.json())
+          .then(datos=>{
+            //console.log(datos)
+            const usuarios=datos;
+            //console.log(usuarios);
+          })
+          .catch(err=>{
+            console.log("Servidor desconectado")
+            console.log(err)
+          }) 
+    },[]);
+
     return (
         <div className="mainPage">
             <div className="declaracion">
@@ -30,4 +45,4 @@ function anuario() {
     )
 }
 
-export default anuario;
+export default Anuario;
