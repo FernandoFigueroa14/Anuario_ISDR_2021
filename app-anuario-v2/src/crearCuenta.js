@@ -1,27 +1,47 @@
-import React from 'react'
+import React from 'react';
+import { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './crearCuenta.css';
 
-function crearCuenta() {
+function CrearCuenta() {
     //Consumiendo el servicio POST  
-    const usuarioNuevo = 
-         fetch('http://18.234.222.26:8080/usuario/agregar',{
+    
+    const usuarioNuevo = async () =>{
+         const respuesta = await fetch('http://18.234.222.26:8080/usuario/agregar',{
             method:'POST',
             headers:{
             'Content-Type':'application/json'
             },
             body:JSON.stringify({
-            mensaje:"Enviando JSON"
+                nombres: "Fernando",
+                apellidos: "Figueroa"
             })
-        })
-    
+        });
+        //Imprimir lo que responde el servidor
+      const data = await respuesta.json()
+      console.log(data)
+    };
+
+    useEffect(() => {
+        fetch('http://18.234.222.26:8080/usuarios')
+        .then(res=>res.json())
+          .then(datos=>{
+            //console.log(datos)
+            const usuarios=datos;
+            console.log(usuarios);
+          })
+          .catch(err=>{
+            console.log("Servidor desconectado")
+            console.log(err)
+          }) 
+    });
 
     return (
         <div className="crearCuenta">
 
             <div className="row inicioSes ajuste2">
 
-                <form>
+                <form onSubmit={(e)=>e.preventDefault()}>
                     <h2 id="inicio">Crear mi cuenta</h2>
                     <div className="row mb-3">
                         <div className="col-sm-12">
@@ -64,13 +84,13 @@ function crearCuenta() {
                     </div>
 
 
-                    <button type="submit" className="btn btn-primary" onClick={usuarioNuevo}>Registrarme</button>
+                    <button type="submit" onClick={usuarioNuevo} className="btn btn-primary" >Registrarme</button>
                 </form>
-
+            {/* <p>{usuarios}</p> */}
             </div>
 
         </div>
     )
 }
 
-export default crearCuenta;
+export default CrearCuenta;

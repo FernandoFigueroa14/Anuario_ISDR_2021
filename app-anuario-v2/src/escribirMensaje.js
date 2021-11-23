@@ -15,17 +15,17 @@ function escribirMensaje() {
 
 
 
-                    <div class="row mb-3">
-                        <div class="col-sm-12">
-                            <label for="exampleFormControlTextarea1" class="form-label ">De:</label>
-                            <input type="text" class="form-control formatoIn" id="nombre" placeholder="AUTOR" disabled />
+                    <div className="row mb-3">
+                        <div className="col-sm-12">
+                            <label for="exampleFormControlTextarea1" className="form-label ">De:</label>
+                            <input type="text" className="form-control formatoIn" id="nombre" placeholder="AUTOR" disabled />
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <div class="col-sm-12">
-                            <label for="exampleFormControlTextarea1" class="form-label ">Para:</label>
-                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <div className="row mb-3">
+                        <div className="col-sm-12">
+                            <label for="exampleFormControlTextarea1" className="form-label ">Para:</label>
+                            <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                                 <option selected>Escoger a mi compañero</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -34,19 +34,19 @@ function escribirMensaje() {
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label ">Mensaje</label>
-                        <textarea class="form-control formatoIn" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <div className="mb-3">
+                        <label for="exampleFormControlTextarea1" className="form-label ">Mensaje</label>
+                        <textarea className="form-control formatoIn" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
 
 
                     <h6>Agrega un recuerdo</h6>
-                    <div class="input-group mb-3">
-                        <input type="file" class="form-control" id="inputGroupFile01" />
+                    <div className="input-group mb-3">
+                        <input type="file" className="form-control" id="inputGroupFile01" />
                     </div>
 
 
-                    <button type="submit" class="btn btn-primary">Mandar mensaje</button>
+                    <button type="submit" className="btn btn-primary">Mandar mensaje</button>
                 </form>
 
             </div>

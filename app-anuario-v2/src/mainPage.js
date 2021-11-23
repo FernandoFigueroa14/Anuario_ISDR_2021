@@ -21,31 +21,31 @@ function mainPage() {
             </div>
 
             <div className=" row inicioSes">
-                <div class="col-3">
+                <div className="col-3">
                     <img className="imgDos" src="/images/IMG_4820.jpg" alt="Foto gen 2" />
                 </div>
                 <div className="col-3">
                     <img className="imgDos" src="/images/IMG_4823.jpg" alt="Foto gen 2" />
                 </div>
-                <div class="col-6 ">
+                <div className="col-6 ">
 
                     <form>
                         <h2 id="inicio">Iniciar sesión</h2>
-                        <div class="row mb-3">
-                            <div class="col-sm-12">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Correo electrónico" />
+                        <div className="row mb-3">
+                            <div className="col-sm-12">
+                                <input type="email" className="form-control" id="inputEmail3" placeholder="Correo electrónico" />
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-12">
-                                <input type="password" class="form-control" id="inputPassword3" placeholder="Contraseña" />
+                        <div className="row mb-3">
+                            <div className="col-sm-12">
+                                <input type="password" className="form-control" id="inputPassword3" placeholder="Contraseña" />
                             </div>
                         </div>
-                        <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                        <label class="form-check-label" for="gridCheck1"> Recordar usuario
+                        <input className="form-check-input" type="checkbox" id="gridCheck1" />
+                        <label className="form-check-label" for="gridCheck1"> Recordar usuario
                         </label>
                         <br />
-                        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                        <button type="submit" className="btn btn-primary">Iniciar sesión</button>
 
                     </form>
                 </div>
