@@ -1,5 +1,6 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './crearCuenta.css';
 
@@ -12,7 +13,8 @@ function CrearCuenta() {
         contraseña: "",
         contraseñaConfirm: "",
         apodo: "",
-        path_foto: ""
+        path_foto: "",
+        file: ""
     });
     
     const [errorsState,setErrorState] = useState({
@@ -25,13 +27,35 @@ function CrearCuenta() {
         path_fotoError: ""
     }); 
 
-    const [status, setStatus] = useState({
-        status: ""
-    })
-    
+    const [pathImage, setPathImage] = useState("");
+    const [file, setFile] = useState();
+    const [name, setName] = useState("");
+
+    const onFileChange = (e) => {
+        if(e.target.files && e.target.files.length > 0){
+            const file = e.target.files[0];
+            if(file.type.includes("image")){
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+
+                reader.onload = function load(){
+                    setPathImage(reader.result);
+                }
+                setFile(file);
+
+                const nombre = Date.now() + '-' + file.name;
+
+                setName(nombre);
+                setState({...state, path_foto: nombre})
+            }else{
+                alert("Hubo un error al cargar la imagen")
+            }
+        }
+    }
+
     //Consumiendo el servicio POST  
     const usuarioNuevo = async () =>{
-         const respuesta = await fetch('http://18.234.222.26:8080/usuario/agregar',{
+         const respuesta = await fetch('http://localhost:8080/usuario/agregar',{
             method:'POST',
             headers:{
             'Content-Type':'application/json'
@@ -44,9 +68,6 @@ function CrearCuenta() {
       const data = await respuesta.json();
       console.log(data);
       if(data.status===400){
-          setStatus({
-              status: data.status
-          })
           setErrorState({
             nombresError: data.errors.nombres ? data.errors.nombres.msg : "",
             apellidosError: data.errors.apellidos ? data.errors.apellidos.msg : "",
@@ -57,10 +78,13 @@ function CrearCuenta() {
             path_fotoError: data.errors.path_foto ? data.errors.path_foto.msg : ""
         });
       }else if(data.status === 201){
-        setStatus({
-            status: data.status
-        })
-        console.log(status);
+        const form = new FormData();
+        form.append('name', name);
+        form.append('file', file, name);
+
+        await axios.post('http://localhost:8080/usuario/agregar/imagen', form).then(resultado => console.log(resultado))
+        .catch(error => console.log(error));
+
         alert("Usuario creado con éxito");
         window.location.href="/";
       }
@@ -128,7 +152,9 @@ function CrearCuenta() {
                     </div>
                     <h6>Sube tu foto de perfil</h6>
                     <div className="input-group mb-3">
-                        <input type="file" onChange={(e)=>setState({...state, path_foto:e.target.value})} className="form-control" id="path_foto" name="path_foto" />
+                        <input type="file" onChange={onFileChange} className="form-control" id="path_foto" name="path_foto" />
+                        
+                        {/* <img className="img-fluid img-thumbnail image" src={pathImage} alt="Foto de perfil"/> */}
                     </div>
                     <div className="errors">
                             <p>{errorsState.path_fotoError}</p>

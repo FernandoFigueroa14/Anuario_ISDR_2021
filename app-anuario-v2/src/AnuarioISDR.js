@@ -13,7 +13,7 @@ function Anuario() {
           .then(datos=>{
             //console.log(datos)
             const usuarios=datos;
-            //console.log(usuarios);
+            console.log(usuarios);
           })
           .catch(err=>{
             console.log("Servidor desconectado")

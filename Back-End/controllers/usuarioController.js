@@ -38,6 +38,7 @@ const usuarioController = {
                     }else{
                         req.body.contraseña = bcryptjs.hashSync(req.body.contraseña, 10);
                         delete req.body.contraseñaConfirm;
+                        
                         await Usuarios.create(req.body)
                                     .then(resultado => {
                                         console.log(resultado);
