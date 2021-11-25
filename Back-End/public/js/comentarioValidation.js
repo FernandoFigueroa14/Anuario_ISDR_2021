@@ -8,7 +8,10 @@ const validations = [
         .withMessage('Tu publicación ha superado el límite de caracteres(2000)'),
     body('path_foto')
         .notEmpty()
-        .withMessage('Debes de colocar una foto de perfil')
+        .withMessage('Debes de colocar una foto de perfil'),
+    body('id_perfil')
+        .notEmpty()
+        .withMessage('Debes de elegir un destinatario')
     /*
         body('fotoUser')
     .custom((value, { req }) => {

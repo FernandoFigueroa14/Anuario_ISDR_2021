@@ -59,6 +59,7 @@ function EscribirMensaje() {
 
     //Consumiendo el servicio POST  
     const comentarioNuevo = async () =>{
+        console.log(state);
         const respuesta = await fetch('http://18.234.222.26:8080/comentario/agregar',{
            method:'POST',
            headers:{
@@ -111,8 +112,8 @@ function EscribirMensaje() {
                     <div className="row mb-3">
                         <div className="col-sm-12">
                             <label for="exampleFormControlTextarea1" className="form-label ">Para:</label>
-                            <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                                <option selected>Escoger a mi compañero</option>
+                            <select className="form-select form-select-lg mb-3" onChange={(e) => setState({...state, id_perfil:e.target.value})} aria-label=".form-select-lg example">
+                                <option disabled selected>Escoger a mi compañero</option>
                                 {usuarios.map((usuario) => { return <option value={usuario.id} key={usuario.id}>{usuario.apodo}</option> })}
                             </select>
                         </div>
