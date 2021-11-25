@@ -41,7 +41,7 @@ const comentarioController = {
                         })
                         .catch(error => {
                             console.log(error);
-                            res.json({estado: 'Error'});
+                            res.json({status: 400, errors: error});
                         });
 
                         await Comentarios.findOne({where: {contenido: req.body.contenido}})
@@ -57,24 +57,24 @@ const comentarioController = {
                                 })
                                 .catch(error => {
                                     console.log(error);
-                                    res.json({estado: 'Error'});
+                                    res.json({status: 400, errors: error});
                                 });
                         })
                         .catch(error => {
                             console.log(error);
-                            res.json({estado: 'Error'});
+                            res.json({status: 400, errors: error});
                         });
                     }else{
-                        res.json({estado: "Debes de iniciar sesión para poder comentar"});            
+                        res.json({status: 400, errors: {path_foto: {msg:"Debes de iniciar sesión para poder comentar"}}});            
                         }
                     })
                 .catch(error => {
                     console.log(error);
-                    res.json({estado: "Error"});
+                    res.json({status: 400, errors: error});
                 });
             } else {
             // Si hay errores
-            res.json({status: 400, errors})
+            res.json({status: 400, errors: errors.mapped()})
             }
     },
     updateComentario: async (req, res) => {
