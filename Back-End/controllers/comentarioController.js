@@ -50,7 +50,7 @@ const comentarioController = {
                                 await Publicaciones.create({
                                     id_comentario: id.id,
                                     id_autor: usuario.id,
-                                    id_perfil: req.params.id
+                                    id_perfil: req.body.id_perfil
                                 })
                                 .then(resultado => {
                                     console.log(resultado);
