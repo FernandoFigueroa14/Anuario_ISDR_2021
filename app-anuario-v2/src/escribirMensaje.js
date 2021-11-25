@@ -14,7 +14,8 @@ function EscribirMensaje() {
 
     const [errorsState,setErrorState] = useState({
         contenidoError: "",
-        path_fotoError: ""
+        path_fotoError: "",
+        id_perfilError: ""
     });
 
     const [pathImage, setPathImage] = useState("");
@@ -59,7 +60,6 @@ function EscribirMensaje() {
 
     //Consumiendo el servicio POST  
     const comentarioNuevo = async () =>{
-        console.log(state);
         const respuesta = await fetch('http://18.234.222.26:8080/comentario/agregar',{
            method:'POST',
            headers:{
@@ -75,7 +75,8 @@ function EscribirMensaje() {
      if(data.status===400){
          setErrorState({
            contenidoError: data.errors.contenido ? data.errors.contenido.msg : "",
-           path_fotoError: data.errors.path_foto ? data.errors.path_foto.msg : ""
+           path_fotoError: data.errors.path_foto ? data.errors.path_foto.msg : "",
+           id_perfilError: data.errors.id_perfil ? data.errors.id_perfil.msg : ""
        });
      }else if(data.status === 201){
        const form = new FormData();
@@ -117,6 +118,9 @@ function EscribirMensaje() {
                                 {usuarios.map((usuario) => { return <option value={usuario.id} key={usuario.id}>{usuario.apodo}</option> })}
                             </select>
                         </div>
+                        <div className="errors">
+                            <p>{errorsState.id_perfilError}</p>
+                    </div>
                     </div>
 
                     <div className="mb-3">

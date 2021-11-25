@@ -14,6 +14,8 @@ function userLoggedMiddleware(req, res, next){
         .then(usuario => {
                 if(usuario){
                     req.session.userLogged = usuario;
+                }else{
+                    req.session.userLogged = "";
                 }
             })
             .catch(error => res.send(error));

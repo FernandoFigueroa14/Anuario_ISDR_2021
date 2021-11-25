@@ -5,7 +5,7 @@ const validations = [
         .notEmpty()
         .withMessage('Debes de colocar un comentario')
         .isLength({max: 5000})
-        .withMessage('Tu publicación ha superado el límite de caracteres(2000)'),
+        .withMessage('Tu publicación ha superado el límite de caracteres(5000)'),
     body('path_foto')
         .notEmpty()
         .withMessage('Debes de colocar una foto de perfil'),
