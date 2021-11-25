@@ -31,7 +31,8 @@ const comentarioController = {
         let errors = validationResult(req);
 
         if(errors.isEmpty()){
-            await Usuarios.findOne({where: {email: req.session.userLogged.email}})
+            if(req.session.userLogged){
+                await Usuarios.findOne({where: {email: req.session.userLogged.email}})
                 .then(async usuario => {
                     if(usuario){
                         let fecha = new Date();
@@ -72,6 +73,9 @@ const comentarioController = {
                     console.log(error);
                     res.json({status: 400, errors: error});
                 });
+             }else{
+                res.json({status: 400, errors: {path_foto: {msg:"Debes de iniciar sesión para poder comentar"}}});
+             }
             } else {
             // Si hay errores
             res.json({status: 400, errors: errors.mapped()})
