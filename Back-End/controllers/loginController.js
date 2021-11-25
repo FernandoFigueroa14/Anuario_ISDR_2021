@@ -20,7 +20,7 @@ const loginController = {
                     if(validationPassword){
                         req.session.userLogged = usuario;
                         if(req.body.remember_user){
-                            res.cookie('email', req.body.email, {maxAge: (1000*60)*60});
+                            return res.cookie('email', req.body.email, {maxAge: (1000*60)*60});
                         }
                         return res.json({status: 200, msg: "Inicio de sesión exitoso", usuario});
                     }else{

@@ -21,7 +21,6 @@ function MainPage() {
 
     //Consumiendo el servicio POST  
     const login = async () =>{
-        console.log(state);
         const respuesta = await fetch('http://18.234.222.26:8080/login',{
            method:'POST',
            headers:{
@@ -33,15 +32,20 @@ function MainPage() {
        });
        //Imprimir lo que responde el servidor
      const data = await respuesta.json();
-     console.log(data.status);
+     console.log(data.usuario);
      if(data.status===400){
          setErrorState({
            emailError: data.errors.email ? data.errors.email.msg : "",
            contraseñaError: data.errors.contraseña ? data.errors.contraseña.msg : ""
        });
      }else if(data.status === 200){
-       alert("Inicio de sesion exitoso");
-       window.location.href="/AnuarioF";
+        sessionStorage.setItem('id', data.usuario.id);
+        sessionStorage.setItem('nombres', data.usuario.nombres);
+        sessionStorage.setItem('apellidos', data.usuario.apellidos);
+        sessionStorage.setItem('email', data.usuario.email);
+        sessionStorage.setItem('apodo', data.usuario.apodo);
+        alert("Inicio de sesion exitoso");
+        window.location.href="/AnuarioF";
      }
    };
 
