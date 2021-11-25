@@ -3,8 +3,8 @@ const { body } = require('express-validator');
 const validations = [
     body('contenido')
         .notEmpty()
-        .withMessage('Debes de colocar tu nombre')
-        .isLength({max: 2000})
+        .withMessage('Debes de colocar un comentario')
+        .isLength({max: 5000})
         .withMessage('Tu publicación ha superado el límite de caracteres(2000)'),
     body('path_foto')
         .notEmpty()
