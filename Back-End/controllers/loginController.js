@@ -21,8 +21,9 @@ const loginController = {
                     return res.json({status: "200", msg: "Inicio de sesión exitoso", usuario});
                 }else{
                     return res.json({
+                        status: 400,
                         errors: {
-                            email: {
+                            contraseña: {
                                 msg: 'Las credenciales son inválidas'
                             }
                         }
@@ -31,6 +32,7 @@ const loginController = {
             }
                 
             return res.json({
+                status: 400,
                 errors: {
                     email: {
                         msg: 'No se encuentra este correo electronico en nuestra base de datos'
