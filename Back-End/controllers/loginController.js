@@ -22,7 +22,7 @@ const loginController = {
                         if(req.body.remember_user){
                             res.cookie('email', req.body.email, {maxAge: (1000*60)*60});
                         }
-                        return res.json({status: "200", msg: "Inicio de sesión exitoso", usuario});
+                        return res.json({status: 200, msg: "Inicio de sesión exitoso", usuario});
                     }else{
                         return res.json({
                             status: 400,

@@ -33,7 +33,7 @@ function MainPage() {
        });
        //Imprimir lo que responde el servidor
      const data = await respuesta.json();
-     console.log(data);
+     console.log(data.status);
      if(data.status===400){
          setErrorState({
            emailError: data.errors.email ? data.errors.email.msg : "",
