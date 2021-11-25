@@ -1,8 +1,24 @@
-import React from 'react'
+import React from 'react';
+import { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './crearCuenta.css';
 
 function escribirMensaje() {
+
+    useEffect(() => {
+        fetch('http://18.234.222.26:8080/usuarios')
+        .then(res=>res.json())
+          .then(datos=>{
+            //console.log(datos)
+            const usuarios=datos;
+            console.log(usuarios);
+          })
+          .catch(err=>{
+            console.log("Servidor desconectado")
+            console.log(err)
+          }) 
+    },[]);
+
     return (
         <div className="crearCuenta">
 

@@ -55,7 +55,7 @@ function CrearCuenta() {
 
     //Consumiendo el servicio POST  
     const usuarioNuevo = async () =>{
-         const respuesta = await fetch('http://localhost:8080/usuario/agregar',{
+         const respuesta = await fetch('http://18.234.222.26/usuario/agregar',{
             method:'POST',
             headers:{
             'Content-Type':'application/json'
