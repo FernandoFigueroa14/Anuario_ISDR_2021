@@ -19,15 +19,8 @@ const app = express();
 const PORT = process.env.PORT | 8080;
 
 //Configuración de cors para recibir peticiones desde otros origenes
-const whitelist = ['http://localhost:3000'];
 const corsOptions = {
   credentials: true, // This is important.
-  origin: (origin, callback) => {
-    if(whitelist.includes(origin))
-      return callback(null, true)
-
-      callback(new Error('Not allowed by CORS'));
-  }
 }
 app.use(cors(corsOptions))
 
