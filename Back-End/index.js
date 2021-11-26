@@ -31,7 +31,7 @@ app.use(methodOverride('_method'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookies());
-app.use(session( {secret: "Acceso seguro Coralio", resave: false, saveUninitialized: false} ));
+app.use(session( {secret: "Acceso seguro Anuario", resave: false, saveUninitialized: false} ));
 app.use(userLoggedMiddleware);
 
 app.use(indexRouter);
