@@ -22,7 +22,7 @@ const loginController = {
                         req.session.userLogged = usuario;
                         if(req.body.remember_user == true){
                             res.cookie('email', req.body.email, {maxAge: (1000*60)*60});
-                            console.log(res.cookie);
+                            console.log(req.cookies);
                         }
                         return res.json({status: 200, msg: "Inicio de sesión exitoso", usuario});
                     }else{
