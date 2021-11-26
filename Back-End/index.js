@@ -20,7 +20,8 @@ const PORT = process.env.PORT | 8080;
 
 //Configuración de cors para recibir peticiones desde otros origenes
 const corsOptions = {
-  credentials: true, // This is important.
+  origin: true,
+  credentials: true // This is important.
 }
 app.use(cors(corsOptions))
 
