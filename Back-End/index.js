@@ -33,6 +33,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(cookies());
 app.use(session( {secret: "Acceso seguro Anuario", resave: false, saveUninitialized: true} ));
 app.use(userLoggedMiddleware);
+console.log(req.session.userLogged);
 
 app.use(indexRouter);
 app.use(usuarioRouter);
