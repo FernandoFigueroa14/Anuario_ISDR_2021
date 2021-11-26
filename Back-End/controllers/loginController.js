@@ -20,9 +20,9 @@ const loginController = {
                     let validationPassword = bcryptjs.compareSync(req.body.contraseña, usuario.contraseña);
                     if(validationPassword){
                         req.session.userLogged = usuario;
-                        if(req.body.remember_user == true){
+                        if(req.body.remember_user){
                             res.cookie('email', req.body.email, {maxAge: (1000*60)*60});
-                            console.log(req.cookies);
+                            console.log("cookie");
                         }
                         return res.json({status: 200, msg: "Inicio de sesión exitoso", usuario});
                     }else{
