@@ -31,7 +31,7 @@ app.use(methodOverride('_method'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookies());
-app.use(session( {secret: "Acceso seguro Anuario", resave: false, saveUninitialized: true} ));
+app.use(session( {secret: "Acceso seguro Anuario", resave: false, saveUninitialized: true, cookie: {maxAge: 60000, sameSite: 'none', secure: true }} ));
 app.use(userLoggedMiddleware);
 
 
