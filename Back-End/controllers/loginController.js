@@ -1,6 +1,7 @@
 const bcryptjs = require('bcryptjs');
 const db = require('../database/models');
 const { validationResult } = require('express-validator');
+const cookie = require('cookie');
 
 const Usuarios = db.Usuario;
 
@@ -21,6 +22,7 @@ const loginController = {
                         req.session.userLogged = usuario;
                         if(req.body.remember_user == true){
                             res.cookie('email', req.body.email, {maxAge: (1000*60)*60});
+                            console.log(res.cookie);
                         }
                         return res.json({status: 200, msg: "Inicio de sesión exitoso", usuario});
                     }else{
