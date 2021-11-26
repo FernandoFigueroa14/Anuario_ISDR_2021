@@ -31,8 +31,8 @@ const comentarioController = {
         let errors = validationResult(req);
 
         if(errors.isEmpty()){
-            console.log(req.session.userLogged);
-            console.log(req.cookies.email);
+            console.log(req.session);
+            console.log(req.cookies);
             if(req.session.userLogged || req.cookies.email){
                 await Usuarios.findOne({where: {email: req.session.userLogged.email}})
                 .then(async usuario => {
