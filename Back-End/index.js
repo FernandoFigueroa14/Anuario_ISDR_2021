@@ -5,6 +5,7 @@ const cors=require('cors')
 const cookies = require('cookie-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
 const { Sequelize } = require('sequelize'); //Conexión base de datos
 const userConfigDB = require('./database/config/config');
 const db = require('./database/models');
@@ -31,7 +32,10 @@ app.use(methodOverride('_method'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookies());
-app.use(session( {secret: "Acceso seguro Anuario", resave: false, saveUninitialized: true, cookie: {maxAge: 60000, sameSite: 'none', secure: true }} ));
+app.use(session( {secret: "Acceso seguro Anuario", resave: false, saveUninitialized: true,store: new RedisStore({
+  host: 'localhost',
+  port: 3000
+}), cookie: {maxAge: 60000, sameSite: 'none', secure: true }} ));
 app.use(userLoggedMiddleware);
 
 
