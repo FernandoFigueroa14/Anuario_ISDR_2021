@@ -18,7 +18,6 @@ function userLoggedMiddleware(req, res, next){
             })
             .catch(error => res.send(error));
     }
-    console.log(sessionStorage);
     next();
 }
 
