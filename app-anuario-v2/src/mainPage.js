@@ -40,8 +40,10 @@ function MainPage() {
            contraseñaError: data.errors.contraseña ? data.errors.contraseña.msg : ""
        });
      }else if(data.status === 200){
+        delete data.usuario.contraseña; 
         if(state.remember_user){
             document.cookie = `email=${data.usuario.email}; max-age=${60*60*24};`;
+            document.cookie = `usuario=${JSON.stringify(data.usuario)}; max-age=${60*60*24};`;
         }
         sessionStorage.setItem('id', data.usuario.id);
         sessionStorage.setItem('nombres', data.usuario.nombres);
