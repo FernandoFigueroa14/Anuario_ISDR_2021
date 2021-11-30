@@ -66,6 +66,7 @@ function EscribirMensaje() {
            headers:{
            'Content-Type':'application/json'
            },
+        //    credentials: 'include',
            body:JSON.stringify({
                ...state
            })
@@ -85,9 +86,9 @@ function EscribirMensaje() {
         form.append('name', name);
         form.append('file', file, name);
 
-        await axios.post('http://18.234.222.26:8080/comentario/agregar/imagen', form)
-        .then(resultado => console.log(resultado))
-        .catch(error => console.log(error));
+        // await axios.post('http://18.234.222.26:8080/comentario/agregar/imagen', form)
+        // .then(resultado => console.log(resultado))
+        // .catch(error => console.log(error));
        
        alert("Comentario creado con éxito");
        window.location.href="/";
