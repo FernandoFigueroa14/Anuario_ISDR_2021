@@ -7,7 +7,7 @@ import Mensajes from './mensajes';
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"></link>
 
-function feed() {
+function Feed() {
     return (
         <div className="feed">
             <div class="row">
@@ -17,7 +17,7 @@ function feed() {
                 <div class="col-9">
                     <Perfiles />
 
-                    <h2 class="Intro">Hola Carlos, <br /> <span class="Introp">bienvenido a tu anuario digital.</span> </h2>
+                    <h2 class="Intro">Hola {sessionStorage.apodo}, <br /> <span class="Introp">bienvenido a tu anuario digital.</span> </h2>
 
                     <div className="buffer">
                         <Mensajes />
@@ -33,4 +33,4 @@ function feed() {
     )
 }
 
-export default feed;
+export default Feed;

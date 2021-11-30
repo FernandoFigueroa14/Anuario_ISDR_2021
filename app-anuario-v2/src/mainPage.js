@@ -8,6 +8,7 @@ import Mensajes from './components/mensajes';
 
 function MainPage() {
     //Inicialización (constructor)
+    
     const [state,setState] = useState({
         email: "",
         contraseña: "",
@@ -55,6 +56,37 @@ function MainPage() {
      }
    };
 
+   if(sessionStorage.email){
+    return (
+        <div className="mainPage">
+            <img src="/images/portadaUno.jpg" alt="Imagen de generacion" />
+            <div className="declaracion">
+                <h2>Queridos amigos,</h2>
+                <h3>Como proyecto integrador de la materia de Apps Web, les queremos dar una pequeño anaurio digital... Este mismo esta pensado para que puedan expresar todos sus agradecimientos a sus amigos y profesores.</h3>
+            </div>
+            <div className="buffer">
+                <Mensajes />
+                <Mensajes />
+                <Mensajes />
+                <Mensajes />
+            </div>
+
+            <div className=" row inicioSes">
+                <div className="col-3">
+                    <img className="imgDos" src="/images/IMG_4820.jpg" alt="Foto gen 2" />
+                </div>
+                <div className="col-3">
+                    <img className="imgDos" src="/images/IMG_4823.jpg" alt="Foto gen 2" />
+                </div>
+                <div className="col-6 ">
+
+                </div>
+
+            </div>
+
+        </div>
+    )
+   }else{
     return (
         <div className="mainPage">
             <img src="/images/portadaUno.jpg" alt="Imagen de generacion" />
@@ -109,6 +141,8 @@ function MainPage() {
 
         </div>
     )
+   }
+    
 }
 
 export default MainPage;

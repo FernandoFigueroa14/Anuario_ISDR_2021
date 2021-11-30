@@ -19,11 +19,11 @@ const app = express();
 const PORT = process.env.PORT | 8080;
 
 //Configuración de cors para recibir peticiones desde otros origenes
-const corsOptions = {
-  origin: true,
-  credentials: true // This is important.
-}
-app.use(cors(corsOptions))
+// const corsOptions = {
+//   origin: true,
+//   credentials: true // This is important.
+// }
+app.use(cors())
 
 //Establecer un middleware que configure donde se encuentran los recursos públicos
 app.use(express.static(path.join(__dirname,'public')));
