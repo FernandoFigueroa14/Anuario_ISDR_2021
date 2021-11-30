@@ -34,7 +34,7 @@ const comentarioController = {
             console.log(req.session);
             console.log(req.cookies);
             if(req.session.userLogged || req.cookies.email || req.body.email){
-                if(req.session.userLogged.email){
+                if(req.session.userLogged){
                     res.cookie('email', req.body.email, {maxAge: (1000*60)*60, sameSite: 'None', secure: true});
                     req.cookie('email', req.body.email, {maxAge: (1000*60)*60, sameSite: 'None', secure: true});
                 }else if(req.cookies.email){
