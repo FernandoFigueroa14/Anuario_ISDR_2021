@@ -9,7 +9,8 @@ function EscribirMensaje() {
     const [state,setState] = useState({
         contenido: "",
         path_foto: "",
-        id_perfil: ""
+        id_perfil: "",
+        email: sessionStorage.email
     });
 
     const [errorsState,setErrorState] = useState({
@@ -106,7 +107,7 @@ function EscribirMensaje() {
                     <div className="row mb-3">
                         <div className="col-sm-12">
                             <label for="exampleFormControlTextarea1" className="form-label ">De:</label>
-                            <input type="text" className="form-control formatoIn" id="nombre" placeholder="AUTOR" disabled />
+                            <input type="text" className="form-control formatoIn" id="nombre" placeholder={sessionStorage.apodo ? sessionStorage.apodo : "Inicia sesion"} disabled />
                         </div>
                     </div>
 
