@@ -33,7 +33,16 @@ const comentarioController = {
         if(errors.isEmpty()){
             console.log(req.session);
             console.log(req.cookies);
-            if(req.session.userLogged || req.cookies.email){
+            if(req.session.userLogged || req.cookies.email || req.body.email){
+                if(req.session.userLogged.email){
+                    res.cookie('email', req.body.email, {maxAge: (1000*60)*60, sameSite: 'None', secure: true});
+                    req.cookie('email', req.body.email, {maxAge: (1000*60)*60, sameSite: 'None', secure: true});
+                }else if(req.cookies.email){
+                    req.session.userLogged.email = req.cookies.email;
+                }else if(req.body.email){
+                    req.session.userLogged.email = req.body.email;
+                }
+            
                 await Usuarios.findOne({where: {email: req.session.userLogged.email}})
                 .then(async usuario => {
                     if(usuario){
