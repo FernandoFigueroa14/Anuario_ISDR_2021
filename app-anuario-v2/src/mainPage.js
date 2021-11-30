@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './mainPage.css';
@@ -19,6 +19,21 @@ function MainPage() {
         emailError: "",
         contraseñaError: ""
     });
+
+    const [publicaciones, setPublicaciones] = useState([]);
+
+    useEffect(() => {
+        fetch('http://18.234.222.26:8080/publicaciones')
+        .then(res=>res.json())
+          .then(datos=>{
+            //console.log(datos)
+            setPublicaciones(datos.publicacion)
+          })
+          .catch(err=>{
+            console.log("Servidor desconectado")
+            console.log(err)
+          }) 
+    },[]);
 
     //Consumiendo el servicio POST  
     const login = async () =>{
@@ -65,10 +80,11 @@ function MainPage() {
                 <h3>Como proyecto integrador de la materia de Apps Web, les queremos dar una pequeño anaurio digital... Este mismo esta pensado para que puedan expresar todos sus agradecimientos a sus amigos y profesores.</h3>
             </div>
             <div className="buffer">
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
+                {publicaciones.map(publicacion => {
+                            if(publicacion.id <5){
+                                return <Mensajes publication={publicacion}></Mensajes>;
+                            }
+                        })}
             </div>
 
             <div className=" row inicioSes">
@@ -95,10 +111,11 @@ function MainPage() {
                 <h3>Como proyecto integrador de la materia de Apps Web, les queremos dar una pequeño anaurio digital... Este mismo esta pensado para que puedan expresar todos sus agradecimientos a sus amigos y profesores.</h3>
             </div>
             <div className="buffer">
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
+                        {publicaciones.map(publicacion => {
+                            if(publicacion.id <5){
+                                return <Mensajes publication={publicacion}></Mensajes>;
+                            }
+                        })}
             </div>
 
             <div className=" row inicioSes">
