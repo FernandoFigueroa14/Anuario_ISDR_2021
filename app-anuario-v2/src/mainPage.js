@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './mainPage.css';
@@ -8,6 +8,7 @@ import Mensajes from './components/mensajes';
 
 function MainPage() {
     //Inicialización (constructor)
+    
     const [state,setState] = useState({
         email: "",
         contraseña: "",
@@ -19,6 +20,21 @@ function MainPage() {
         contraseñaError: ""
     });
 
+    const [publicaciones, setPublicaciones] = useState([]);
+
+    useEffect(() => {
+        fetch('http://18.234.222.26:8080/publicaciones')
+        .then(res=>res.json())
+          .then(datos=>{
+            //console.log(datos)
+            setPublicaciones(datos.publicacion)
+          })
+          .catch(err=>{
+            console.log("Servidor desconectado")
+            console.log(err)
+          }) 
+    },[]);
+
     //Consumiendo el servicio POST  
     const login = async () =>{
         const respuesta = await fetch('http://18.234.222.26:8080/login',{
@@ -26,7 +42,7 @@ function MainPage() {
            headers:{
            'Content-Type':'application/json'
            },
-           credentials: 'include',
+        //    credentials: 'include',
            body:JSON.stringify({
                ...state
            })
@@ -40,8 +56,10 @@ function MainPage() {
            contraseñaError: data.errors.contraseña ? data.errors.contraseña.msg : ""
        });
      }else if(data.status === 200){
+        delete data.usuario.contraseña; 
         if(state.remember_user){
             document.cookie = `email=${data.usuario.email}; max-age=${60*60*24};`;
+            document.cookie = `usuario=${JSON.stringify(data.usuario)}; max-age=${60*60*24};`;
         }
         sessionStorage.setItem('id', data.usuario.id);
         sessionStorage.setItem('nombres', data.usuario.nombres);
@@ -53,6 +71,7 @@ function MainPage() {
      }
    };
 
+   if(sessionStorage.email){
     return (
         <div className="mainPage">
             <img src="/images/portadaUno.jpg" alt="Imagen de generacion" />
@@ -61,10 +80,42 @@ function MainPage() {
                 <h3>Como proyecto integrador de la materia de Apps Web, les queremos dar una pequeño anaurio digital... Este mismo esta pensado para que puedan expresar todos sus agradecimientos a sus amigos y profesores.</h3>
             </div>
             <div className="buffer">
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
+                {publicaciones.map(publicacion => {
+                            if(publicacion.id <5){
+                                return <Mensajes publication={publicacion}></Mensajes>;
+                            }
+                        })}
+            </div>
+
+            <div className=" row inicioSes">
+                <div className="col-3">
+                    <img className="imgDos" src="/images/IMG_4820.jpg" alt="Foto gen 2" />
+                </div>
+                <div className="col-3">
+                    <img className="imgDos" src="/images/IMG_4823.jpg" alt="Foto gen 2" />
+                </div>
+                <div className="col-6 ">
+
+                </div>
+
+            </div>
+
+        </div>
+    )
+   }else{
+    return (
+        <div className="mainPage">
+            <img src="/images/portadaUno.jpg" alt="Imagen de generacion" />
+            <div className="declaracion">
+                <h2>Queridos amigos,</h2>
+                <h3>Como proyecto integrador de la materia de Apps Web, les queremos dar una pequeño anaurio digital... Este mismo esta pensado para que puedan expresar todos sus agradecimientos a sus amigos y profesores.</h3>
+            </div>
+            <div className="buffer">
+                        {publicaciones.map(publicacion => {
+                            if(publicacion.id <5){
+                                return <Mensajes publication={publicacion}></Mensajes>;
+                            }
+                        })}
             </div>
 
             <div className=" row inicioSes">
@@ -107,6 +158,8 @@ function MainPage() {
 
         </div>
     )
+   }
+    
 }
 
 export default MainPage;

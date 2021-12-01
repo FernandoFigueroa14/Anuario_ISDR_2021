@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './mainPage.css';
@@ -7,13 +7,14 @@ import './mainPage.css';
 import Mensajes from './components/mensajes';
 
 function Anuario() {
+    const [publicaciones, setPublicaciones] = useState([]);
+
     useEffect(() => {
-        fetch('http://18.234.222.26:8080/usuarios')
+        fetch('http://18.234.222.26:8080/publicaciones')
         .then(res=>res.json())
           .then(datos=>{
             //console.log(datos)
-            const usuarios=datos;
-            console.log(usuarios);
+            setPublicaciones(datos.publicacion)
           })
           .catch(err=>{
             console.log("Servidor desconectado")
@@ -28,18 +29,9 @@ function Anuario() {
                 <h3>Aquí están todos los comentarios que componen este anuario</h3>
             </div>
             <div className="buffer">
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
-                <Mensajes />
+                        {publicaciones.map(publicacion => {
+                            return <Mensajes publication={publicacion}></Mensajes>;
+                        })}
             </div>
         </div>
     )

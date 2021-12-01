@@ -9,7 +9,8 @@ function EscribirMensaje() {
     const [state,setState] = useState({
         contenido: "",
         path_foto: "",
-        id_perfil: ""
+        id_perfil: "",
+        email: sessionStorage.email ? sessionStorage.email : ""
     });
 
     const [errorsState,setErrorState] = useState({
@@ -65,12 +66,14 @@ function EscribirMensaje() {
            headers:{
            'Content-Type':'application/json'
            },
+        //    credentials: 'include',
            body:JSON.stringify({
                ...state
            })
        });
        //Imprimir lo que responde el servidor
-     const data = await respuesta.json();
+     const data = await respuesta.json()
+     .catch(error => console.log(error));
      console.log(data);
      if(data.status===400){
          setErrorState({
@@ -79,13 +82,13 @@ function EscribirMensaje() {
            id_perfilError: data.errors.id_perfil ? data.errors.id_perfil.msg : ""
        });
      }else if(data.status === 201){
-       const form = new FormData();
-       form.append('name', name);
-       form.append('file', file, name);
+        const form = new FormData();
+        form.append('name', name);
+        form.append('file', file, name);
 
-       await axios.post('http://18.234.222.26:8080/comentario/agregar/imagen', form).then(resultado => console.log(resultado))
-       .catch(error => console.log(error));
-
+        //await axios.post('http://18.234.222.26:8080/comentario/agregar/imagen', form)
+        //.catch(error => console.log(error));
+       
        alert("Comentario creado con éxito");
        window.location.href="/";
      }
@@ -106,7 +109,7 @@ function EscribirMensaje() {
                     <div className="row mb-3">
                         <div className="col-sm-12">
                             <label for="exampleFormControlTextarea1" className="form-label ">De:</label>
-                            <input type="text" className="form-control formatoIn" id="nombre" placeholder="AUTOR" disabled />
+                            <input type="text" className="form-control formatoIn" id="nombre" placeholder={sessionStorage.apodo ? sessionStorage.apodo : "Inicia sesion"} disabled />
                         </div>
                     </div>
 
@@ -115,7 +118,7 @@ function EscribirMensaje() {
                             <label for="exampleFormControlTextarea1" className="form-label ">Para:</label>
                             <select className="form-select form-select-lg mb-3" onChange={(e) => setState({...state, id_perfil:e.target.value})} aria-label=".form-select-lg example">
                                 <option disabled selected>Escoger a mi compañero</option>
-                                {usuarios.map((usuario) => { return <option value={usuario.id} key={usuario.id}>{usuario.apodo}</option> })}
+                                {usuarios.map((usuario) => { if(parseInt(sessionStorage.id)!==usuario.id){ return <option value={usuario.id} key={usuario.id}>{usuario.apodo}</option> }})}
                             </select>
                         </div>
                         <div className="errors">
@@ -134,7 +137,9 @@ function EscribirMensaje() {
 
                     <h6>Agrega un recuerdo</h6>
                     <div className="input-group mb-3">
-                        <input type="file" onChange={onFileChange} className="form-control" id="inputGroupFile01" />
+                        <input type="file" onChange={onFileChange} className="form-control" id="path_foto" name="path_foto" />
+                        {/* <img className="img-fluid img-thumbnail image" src={pathImage} alt="Foto de perfil"/> */}
+
                     </div>
                     <div className="errors">
                             <p>{errorsState.path_fotoError}</p>
